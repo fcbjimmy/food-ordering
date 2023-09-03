@@ -2,6 +2,7 @@ import React from "react";
 import { Menu } from "./Menu";
 import Link from "next/link";
 import { CartIcon } from "./CartIcon";
+import { Userlinks } from "./UserLinks";
 
 export const Navbar = () => {
   const user = false;
@@ -23,11 +24,8 @@ export const Navbar = () => {
       </div>
       {/* Right Links */}
       <div className="hidden md:flex gap-4 items-center justify-end flex-1">
-        {!user ? (
-          <Link href="/login">Login</Link>
-        ) : (
-          <Link href="/order">Orders</Link>
-        )}
+        <Userlinks />
+
         <Link href="/cart">
           <CartIcon />
         </Link>

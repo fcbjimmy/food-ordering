@@ -1,12 +1,23 @@
 import React from "react";
-import { pizzas } from "@/data";
 import Link from "next/link";
 import Image from "next/image";
 
-const Menu = () => {
+const getProducts = async () => {
+  const res = await fetch("http://localhost:3000/api/products?featured=no", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed");
+  }
+  return res.json();
+};
+
+const Menu = async () => {
+  const products: Product[] = await getProducts();
   return (
     <div className="flex flex-wrap text-pink-600">
-      {pizzas.map((item) => {
+      {products.map((item) => {
         return (
           <Link
             className="w-full h-[60vh] border-r-2   border-b-2 border-pink-600 sm:w-1/2 lg:w-1/3 p-4 flex flex-col justify-between group even:bg-fuchsia-50"

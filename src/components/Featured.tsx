@@ -1,8 +1,20 @@
 import React from "react";
 import Image from "next/image";
-import { featuredProducts } from "@/data";
 
-export const Featured = () => {
+const getFeaturedProducts = async () => {
+  const res = await fetch("http://localhost:3000/api/products?featured=yes", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed");
+  }
+  return res.json();
+};
+
+export const Featured = async () => {
+  const featuredProducts: Product[] = await getFeaturedProducts();
+
   return (
     <div className="w-screen overflow-x-scroll text-pink-600">
       {/* WRAPPER */}

@@ -5,3 +5,12 @@ https://stackoverflow.com/questions/67421778/next-js-image-layout-fill-is-broken
 hover hidden tailwind
 https://daily-dev-tips.com/posts/tailwind-group-hover-the-state-you-missed/
 https://stackoverflow.com/questions/14732448/how-do-i-make-the-scrollbar-on-a-div-only-visible-when-necessary
+Nextjs Auth + Prisma + Postgres
+https://medium.com/@rabin.nyaundi254/nextjs-authentication-with-nextauth-prisma-an-postgres-7d55b14e68ad
+Schema reference
+https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#relation
+Next-Auth google
+https://next-auth.js.org/providers/google#configuration
+Role based auth
+https://authjs.dev/guides/basics/role-based-access-control
+https://www.youtube.com/watch?v=ay-atEUGIc4
