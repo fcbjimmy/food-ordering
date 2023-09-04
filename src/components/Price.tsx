@@ -2,29 +2,32 @@
 
 import React, { useEffect, useState } from "react";
 
-type Props = {
-  price: number;
-  id: number;
-  options?: { title: string; additionalPrice: number }[];
-};
+// type Props = {
+//   price: number;
+//   id: string;
+//   options?: { title: string; additionalPrice: number }[];
+// };
 
-const Price = ({ price, id, options }: Props) => {
-  const [total, setTotal] = useState(price);
+const Price = ({ product }: { product: Product }) => {
+  const [total, setTotal] = useState<number>(product.price);
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState(0);
 
   useEffect(() => {
-    setTotal(
-      quantity * (options ? price + options[selected].additionalPrice : price)
-    );
-  }, [quantity, selected, options, price]);
+    if (product.options.length) {
+      setTotal(
+        quantity * product.price + product.options[selected].additionalPrice
+      );
+    }
+  }, [quantity, selected, product.options, product.price]);
 
+  console.log(typeof total);
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-2xl">${total.toFixed(2)}</h2>
+      <h2 className="text-2xl">${Number(total).toFixed(1)}</h2>
       {/* Options container */}
       <div className="flex gap-4">
-        {options?.map((option, id) => (
+        {product.options?.map((option, id) => (
           <button
             key={id}
             className={`min-w-[6rem] p-2 ring-1 ring-pink-600 rounded-md ${

@@ -6,9 +6,12 @@ const getFeaturedProducts = async () => {
     cache: "no-store",
   });
 
+  console.log(res);
+
   if (!res.ok) {
     throw new Error("Failed");
   }
+
   return res.json();
 };
 

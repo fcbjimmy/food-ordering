@@ -7,7 +7,9 @@ export const GET = async (req: NextRequest) => {
   const session = await getAuthSession();
 
   //not good for finding if user is admin coz it will cost alot database queries, instead use the session token strategy in auth.ts
+
   // const user = await prisma.user(findUnique({ where: { email: session?.user.email } }));
+
   if (session) {
     try {
       if (session.user.isAdmin) {
@@ -21,9 +23,14 @@ export const GET = async (req: NextRequest) => {
       }
     } catch (error) {
       console.log(error);
-      return new NextResponse(JSON.stringify({ message: "Unauthenticated" }), {
-        status: 401,
-      });
+      return new NextResponse(
+        JSON.stringify({ message: "Something went wrong!" }),
+        { status: 500 }
+      );
     }
+  } else {
+    return new NextResponse(JSON.stringify({ message: "Unauthenticated" }), {
+      status: 401,
+    });
   }
 };

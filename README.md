@@ -14,3 +14,5 @@ https://next-auth.js.org/providers/google#configuration
 Role based auth
 https://authjs.dev/guides/basics/role-based-access-control
 https://www.youtube.com/watch?v=ay-atEUGIc4
+page params
+https://www.slingacademy.com/article/next-js-retrieve-url-params-from-dynamic-routes/#google_vignette
