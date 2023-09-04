@@ -1,7 +1,15 @@
+"use client";
+import { useCartStore } from "@/utils/store";
 import Link from "next/link";
-import React from "react";
+import { useEffect } from "react";
 
 export const CartIcon = () => {
+  const { totalItems } = useCartStore();
+
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, []);
+
   return (
     <div className="flex items-center gap-4 md:gap-2">
       <div>
@@ -20,7 +28,7 @@ export const CartIcon = () => {
           />
         </svg>
       </div>
-      <span>Cart (3)</span>
+      <span>Cart ({totalItems})</span>
     </div>
   );
 };

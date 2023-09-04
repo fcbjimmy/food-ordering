@@ -14,8 +14,6 @@ export const GET = async (
         id: id,
       },
     });
-    console.log("------------------------API------------------------");
-    console.log(product);
     return NextResponse.json(product, { status: 200 });
   } catch (error) {
     console.log(error);

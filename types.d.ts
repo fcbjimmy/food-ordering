@@ -27,3 +27,14 @@ type CartItem = {
   optionTitle?: string;
   quantity: number;
 };
+
+type CartType = {
+  products: CartItem[];
+  totalItems: number;
+  totalPrice: number;
+};
+
+type ActionTypes = {
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (item: CartItem) => void;
+};

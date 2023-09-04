@@ -1,8 +1,6 @@
 import React from "react";
 import Image from "next/image";
-// import { singleProduct } from "@/data";
 import Price from "@/components/Price";
-import { useParams } from "next/navigation";
 
 const getProduct = async (id: string) => {
   const res = await fetch(`http://localhost:3000/api/products/${id}`, {
