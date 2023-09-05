@@ -21,12 +21,6 @@ const Price = ({ product }: { product: Product }) => {
         quantity * Number(product.price) +
           product.options[selected].additionalPrice
       );
-      console.log("--------------------------HERE--------------------------");
-      console.log(
-        quantity,
-        product.price,
-        product.options[selected].additionalPrice
-      );
     }
   }, [quantity, selected, product]);
 

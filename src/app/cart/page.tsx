@@ -15,11 +15,8 @@ const Cart = () => {
       {/* Products Container */}
       <div className="h-1/2 p-4 flex flex-col justify-center overflow-y-auto lg:h-full lg:w-2/3 lg:px-20 xl:px-40">
         {/* Single Item */}
-        {products.map((product) => (
-          <div
-            className="flex items-center justify-between mb-4"
-            key={product.id}
-          >
+        {products.map((product, id) => (
+          <div className="flex items-center justify-between mb-4" key={id}>
             {product.img && (
               <Image src={product.img} alt="" width={100} height={100} />
             )}
