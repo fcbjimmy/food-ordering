@@ -11,7 +11,7 @@ const Orders = () => {
 
   const router = useRouter();
 
-  if (status === "unauthenticated") {
+  if (status === "unauthenticated" || !session) {
     router.push("/");
   }
 
@@ -47,7 +47,9 @@ const Orders = () => {
     toast.success("Order has been updated");
   };
 
-  if (isLoading || status === "loading") return "Loading...";
+  if (isLoading || status === "loading") {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="p-4 lg:px-20 xl:px-40">

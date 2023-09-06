@@ -2,14 +2,48 @@
 import Image from "next/image";
 import { useCartStore } from "@/utils/store";
 import { useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
+//Cart -> Checkout -> Create first order on db with no paid status and returns the order id ->
+// Payment page -> API Call to create intentid with checking if order id exists on db ->
+// Once it checks order id exists, it created intentid (paymentIntent.client_secret) and then u can update
+// the db and send it as json()
+// then it redirects to success payment where it will send make an api call to change
+// the order status to PAID!
 const Cart = () => {
   const { products, totalItems, totalPrice, removeFromCart } = useCartStore();
+
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  const handleCheckOut = async () => {
+    if (!session) {
+      router.push("/");
+    } else {
+      try {
+        const res = await fetch("http://localhost:3000/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            price: totalPrice,
+            products,
+            status: "Not Paid!",
+            userEmail: session.user.email,
+          }),
+        });
+        const data = await res.json();
+        router.push(`payment/${data.id}`);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   useEffect(() => {
     useCartStore.persist.rehydrate();
   }, []);
-  console.log(products);
+
   return (
     <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col text-pink-600 lg:flex-row">
       {/* Products Container */}
@@ -55,7 +89,10 @@ const Cart = () => {
           <span className="">TOTAL</span>
           <span className="font-bold">${totalPrice.toFixed(2)}</span>
         </div>
-        <button className="bg-pink-600 text-white p-3 rounded-md w-1/2 self-end">
+        <button
+          className="bg-pink-600 text-white p-3 rounded-md w-1/2 self-end"
+          onClick={handleCheckOut}
+        >
           Check out
         </button>
       </div>
