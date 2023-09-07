@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 
+import FeaturedTextContainer from "./FeaturedTextContainer";
+
 const getFeaturedProducts = async () => {
   const res = await fetch("http://localhost:3000/api/products?featured=yes", {
     cache: "no-store",
@@ -31,7 +33,7 @@ export const Featured = async () => {
             >
               {/* IMAGE CONTAINER */}
               {item.img && (
-                <div className="relative flex-1 w-full hover:rotate-[60deg] transition-all duration-500">
+                <div className="relative flex-1 w-full">
                   <Image
                     src={item.img}
                     alt=""
@@ -41,16 +43,12 @@ export const Featured = async () => {
                 </div>
               )}
               {/* TEXT CONTAINER */}
-              <div className="flex-1 flex flex-col items-center justify-center text-center gap-4">
-                <h1 className="text-xl font-bold uppercase xl:text-2xl 2xl:text-3xl">
-                  {item.title}
-                </h1>
-                <p className="p-4 2xl:p-8">{item.desc}</p>
-                <span className="text-xl font-bold ">{item.price}</span>
-                <button className="bg-pink-600 text-white p-2 rounded-md">
-                  Add to cart
-                </button>
-              </div>
+              <FeaturedTextContainer
+                title={item.title}
+                desc={item.desc}
+                price={item.price}
+                id={item.id}
+              />
             </div>
           );
         })}

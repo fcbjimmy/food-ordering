@@ -30,6 +30,8 @@ export const POST = async (
           intent_id: paymentIntent.client_secret,
         },
       });
+      console.log("paymentIntent from route");
+      console.log(paymentIntent.client_secret);
       return NextResponse.json(
         { clientSecret: paymentIntent.client_secret },
         { status: 500 }

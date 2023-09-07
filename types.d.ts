@@ -37,4 +37,5 @@ type CartType = {
 type ActionTypes = {
   addToCart: (item: CartItem) => void;
   removeFromCart: (item: CartItem) => void;
+  clearCart: () => void;
 };

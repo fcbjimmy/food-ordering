@@ -1,10 +1,13 @@
 "use client";
+import { useCartStore } from "@/utils/store";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const SuccessPage = () => {
   const searchParams = useSearchParams();
-  const payment_intent = searchParams.get("payment_intent");
+  const payment_intent = searchParams.get("payment_intent_client_secret");
+  const { clearCart } = useCartStore();
 
   const router = useRouter();
 
@@ -16,7 +19,12 @@ const SuccessPage = () => {
           `http://localhost:3000/api/confirm/${payment_intent}`,
           { method: "PUT" }
         );
+        console.log(res);
+        const data = await res.json();
         if (res.ok) {
+          clearCart();
+
+          toast.success(data.message);
           timerId = setTimeout(() => {
             // do something
             router.push("/");

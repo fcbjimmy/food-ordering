@@ -79,12 +79,26 @@ const CheckoutForm = () => {
 
     setIsLoading(false);
   };
-  console.log("----------------CHECKOUT----------------");
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="h-[calc(100vh-9rem)] md:h-[calc(100vh-12em)] flex flex-col items-center justify-center gap-4"
+    >
+      <h2 className="w-72 text-sm text-gray-400">
+        Can use email: test@test.com
+      </h2>
+      <h2 className="w-72 text-sm text-gray-400">
+        Can use test card: 4242 4242 4242 4242
+      </h2>
       <LinkAuthenticationElement id="link-authentication-element" />
       <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+
+      <button
+        disabled={isLoading || !stripe || !elements}
+        id="submit"
+        className="text-xl text-white border-2 rounded-md bg-green-500 p-2"
+      >
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>

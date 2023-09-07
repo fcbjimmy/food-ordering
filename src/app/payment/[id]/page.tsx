@@ -25,7 +25,10 @@ const PaymentPage = ({ params }: { params: { id: string } }) => {
           }
         );
         const data = await res.json();
-        console.log(data);
+        console.log(
+          "--------------------------clientSecret (intentId)--------------------------"
+        );
+        console.log(data.clientSecret);
         setClientSecret(data.clientSecret);
       } catch (error) {
         console.log(error);
@@ -33,7 +36,7 @@ const PaymentPage = ({ params }: { params: { id: string } }) => {
     };
 
     makePayment();
-  }, [id, clientSecret]);
+  }, [id]);
 
   const options: StripeElementsOptions = {
     clientSecret,

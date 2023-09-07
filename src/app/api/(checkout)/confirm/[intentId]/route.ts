@@ -7,7 +7,7 @@ export const PUT = async (
 ) => {
   const { intentId } = params;
   console.log(
-    "------------------------------------helloo------------------------------------"
+    "------------------------------------intentId------------------------------------"
   );
   console.log(intentId);
 
@@ -29,7 +29,7 @@ export const PUT = async (
     });
 
     return NextResponse.json(
-      { message: "Order is being prepared!" },
+      { message: "Order placed! Order is being prepared!" },
       { status: 200 }
     );
   } catch (error) {
