@@ -26,3 +26,23 @@ export const GET = async (req: NextRequest) => {
     );
   }
 };
+
+//Post products
+export const POST = async (req: NextRequest) => {
+  const body = await req.json();
+  console.log("-------------------------Body-------------------------");
+  console.log(body);
+
+  const product = await prisma.product.create({
+    data: body,
+  });
+  try {
+    return NextResponse.json(product, { status: 201 });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { message: "Something went wrong" },
+      { status: 500 }
+    );
+  }
+};

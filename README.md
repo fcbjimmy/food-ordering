@@ -16,3 +16,7 @@ https://authjs.dev/guides/basics/role-based-access-control
 https://www.youtube.com/watch?v=ay-atEUGIc4
 page params
 https://www.slingacademy.com/article/next-js-retrieve-url-params-from-dynamic-routes/#google_vignette
+upload files
+https://www.youtube.com/watch?v=8uChP5ivQ1Q
+https://stackoverflow.com/questions/64516187/difference-between-event-file-and-event-target-files
+https://www.bezkoder.com/react-typescript-file-upload/
