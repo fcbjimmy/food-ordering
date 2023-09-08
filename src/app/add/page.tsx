@@ -41,17 +41,21 @@ const AddProduct = () => {
     setFile(item);
   };
 
+  //CLOUDINARY_URL=cloudinary://957323929832296:3Q_TazdHKLJ4D9678y3UcvgRZNc@dp5axfdaj
+  //https://api.cloudinary.com/v1_1/dp5axfdaj/image/upload
   const uploadToCloudinary = async () => {
     const data = new FormData();
+
     data.append("file", file!);
-    data.append("upload_preset", "restaurant");
-    console.log("data:", data);
+    data.append("upload_preset", "restaurant1");
+    // data.append("timestamp");
+    // data.append("api_key", process.env.CLOUDINARY_API_KEY!);
+
     try {
       const res = await fetch(
-        "https://api.cloudinary.com/v1_1/dp5axfdaj/image",
+        "https://api.cloudinary.com/v1_1/dp5axfdaj/image/upload",
         {
           method: "POST",
-          headers: { "Content-Type": "multipart/form-data" },
           body: data,
         }
       );
@@ -97,9 +101,10 @@ const AddProduct = () => {
       console.log(error);
     }
   };
-
+  // h-[calc(100vh-9rem)]
+  //h-[calc(100vh-6rem)]
   return (
-    <div className="p-4 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex items-center justify-center mt-16 mb-8">
+    <div className="p-4 lg:px-20 xl:px-40 mt-5 max-h-full flex items-center justify-center">
       <form
         className="flex flex-wrap gap-4 shadow-lg p-8 md:w-1/2"
         onSubmit={onSubmitHandler}

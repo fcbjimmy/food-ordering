@@ -2,17 +2,17 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { CartIcon } from "./CartIcon";
+import { useSession } from "next-auth/react";
 
 export const Menu = () => {
   const [open, setOpen] = useState(false);
+  const { data, status } = useSession();
+
   const links = [
     { id: 1, title: "Homepage", url: "/" },
     { id: 2, title: "Menu", url: "/menu" },
-    { id: 3, title: "Working Hours", url: "/" },
-    { id: 4, title: "Contact", url: "/contact" },
+    // { id: 3, title: "Contact", url: "/contact" },
   ];
-
-  const user = false;
 
   return (
     <div>
@@ -58,7 +58,7 @@ export const Menu = () => {
               {link.title}
             </Link>
           ))}
-          {!user ? (
+          {!data?.user ? (
             <Link href="/login" onClick={() => setOpen(false)}>
               Login
             </Link>
@@ -70,6 +70,11 @@ export const Menu = () => {
           <Link href="/cart" onClick={() => setOpen(false)}>
             <CartIcon />
           </Link>
+          {data?.user.isAdmin && (
+            <Link href="/add" onClick={() => setOpen(false)}>
+              Add Product
+            </Link>
+          )}
         </div>
       )}
     </div>

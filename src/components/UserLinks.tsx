@@ -7,7 +7,6 @@ export const Userlinks = () => {
   const { status } = useSession();
   return (
     <div>
-      {" "}
       {status === "authenticated" ? (
         <div>
           <Link href="/orders">Orders</Link>
@@ -19,7 +18,7 @@ export const Userlinks = () => {
           </span>
         </div>
       ) : (
-        <Link href="/login">Login</Link>
+        <Link href="/login">Login!</Link>
       )}
     </div>
   );

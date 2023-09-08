@@ -20,3 +20,14 @@ upload files
 https://www.youtube.com/watch?v=8uChP5ivQ1Q
 https://stackoverflow.com/questions/64516187/difference-between-event-file-and-event-target-files
 https://www.bezkoder.com/react-typescript-file-upload/
+
+// todo
+
+- client secret(intentid) doesnt match with db ✅
+- adjust the form height ✅
+- modify mobile navbar✅
+- add the add page in the nav bar✅
+- add proper loading page
+- error page notfound?
+- revalidate?
+- change the localhost:3000 link
