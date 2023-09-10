@@ -13,9 +13,17 @@ export const GET = async (req: NextRequest) => {
           isFeatured: true,
         },
       });
+      console.log(
+        "------------------------HELLO FROM THE LOG------------------------"
+      );
+      console.log(products);
       return new NextResponse(JSON.stringify(products), { status: 200 });
     } else {
       const products = await prisma.product.findMany();
+      console.log(
+        "------------------------HELLO FROM THE LOG------------------------"
+      );
+      console.log(products);
       return new NextResponse(JSON.stringify(products), { status: 200 });
     }
   } catch (error) {
