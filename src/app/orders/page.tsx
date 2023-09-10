@@ -1,10 +1,12 @@
 "use client";
+
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { BiEdit } from "react-icons/bi";
 import { FormEvent } from "react";
 import { toast } from "react-toastify";
+import { NEXT_URL } from "@/utils/url";
 
 const Orders = () => {
   const { data: session, status } = useSession();
@@ -17,15 +19,14 @@ const Orders = () => {
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["orders"],
-    queryFn: () =>
-      fetch("http://localhost:3000/api/orders").then((res) => res.json()),
+    queryFn: () => fetch(`${NEXT_URL}/api/orders`).then((res) => res.json()),
   });
 
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: ({ id, status }: { id: string; status: string }) => {
-      return fetch(`http://localhost:3000/api/orders/${id}`, {
+      return fetch(`${NEXT_URL}/api/orders/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

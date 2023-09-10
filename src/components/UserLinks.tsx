@@ -18,7 +18,7 @@ export const Userlinks = () => {
           </span>
         </div>
       ) : (
-        <Link href="/login">Login!</Link>
+        <Link href="/login">Login</Link>
       )}
     </div>
   );

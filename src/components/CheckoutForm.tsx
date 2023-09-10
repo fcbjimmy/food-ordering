@@ -7,6 +7,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import { NEXT_URL } from "@/utils/url";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -62,7 +63,7 @@ const CheckoutForm = () => {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/success",
+        return_url: `${NEXT_URL}/success`,
       },
     });
 

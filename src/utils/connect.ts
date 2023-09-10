@@ -15,3 +15,5 @@ const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
 export default prisma;
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+
+//https://www.prisma.io/docs/guides/other/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices

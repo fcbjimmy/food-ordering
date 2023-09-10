@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { NEXT_URL } from "@/utils/url";
 
 //Cart -> Checkout -> Create first order on db with no paid status and returns the order id ->
 // Payment page -> API Call to create intentid with checking if order id exists on db ->
@@ -23,7 +24,7 @@ const Cart = () => {
       router.push("/");
     } else {
       try {
-        const res = await fetch("http://localhost:3000/api/orders", {
+        const res = await fetch(`${NEXT_URL}/api/orders`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

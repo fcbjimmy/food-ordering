@@ -1,8 +1,10 @@
 "use client";
+
 import { useCartStore } from "@/utils/store";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { toast } from "react-toastify";
+import { NEXT_URL } from "@/utils/url";
 
 const SuccessPage = () => {
   const searchParams = useSearchParams();
@@ -15,10 +17,9 @@ const SuccessPage = () => {
     let timerId: ReturnType<typeof setTimeout>;
     const confirmPayment = async () => {
       try {
-        const res = await fetch(
-          `http://localhost:3000/api/confirm/${payment_intent}`,
-          { method: "PUT" }
-        );
+        const res = await fetch(`${NEXT_URL}/api/confirm/${payment_intent}`, {
+          method: "PUT",
+        });
         console.log(res);
         const data = await res.json();
         if (res.ok) {

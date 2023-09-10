@@ -1,9 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { NEXT_URL } from "@/utils/url";
 
 const getProducts = async () => {
-  const res = await fetch("http://localhost:3000/api/products?featured=no", {
+  const res = await fetch(`${NEXT_URL}/api/products?featured=no`, {
     cache: "no-store",
   });
 
