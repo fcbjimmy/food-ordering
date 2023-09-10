@@ -4,7 +4,6 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
-import { NEXT_URL } from "@/utils/url";
 
 type Inputs = { title: string; desc?: string; price: number; catSlug: string };
 
@@ -90,9 +89,10 @@ const AddProduct = () => {
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const apiUrl = process.env.API_URL;
     try {
       const imgUrl = await uploadToCloudinary();
-      const res = await fetch(`${NEXT_URL}/api/products`, {
+      const res = await fetch(`${apiUrl}/api/products`, {
         method: "POST",
         body: JSON.stringify({ ...inputs, img: imgUrl, options }),
       });

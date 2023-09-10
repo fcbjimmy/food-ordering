@@ -6,11 +6,10 @@ import { useRouter } from "next/navigation";
 import { BiEdit } from "react-icons/bi";
 import { FormEvent } from "react";
 import { toast } from "react-toastify";
-import { NEXT_URL } from "@/utils/url";
 
 const Orders = () => {
   const { data: session, status } = useSession();
-
+  const apiUrl = process.env.API_URL;
   const router = useRouter();
 
   if (status === "unauthenticated" || !session) {
@@ -19,14 +18,14 @@ const Orders = () => {
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["orders"],
-    queryFn: () => fetch(`${NEXT_URL}/api/orders`).then((res) => res.json()),
+    queryFn: () => fetch(`${apiUrl}/api/orders`).then((res) => res.json()),
   });
 
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: ({ id, status }: { id: string; status: string }) => {
-      return fetch(`${NEXT_URL}/api/orders/${id}`, {
+      return fetch(`${apiUrl}/api/orders/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

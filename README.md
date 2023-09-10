@@ -21,6 +21,8 @@ https://www.youtube.com/watch?v=8uChP5ivQ1Q
 https://stackoverflow.com/questions/64516187/difference-between-event-file-and-event-target-files
 https://www.bezkoder.com/react-typescript-file-upload/
 
+https://stackoverflow.com/questions/76624252/typeerror-fetch-failed-when-deploying-to-vercel-next-js
+
 // todo
 
 - client secret(intentid) doesnt match with db ✅
@@ -30,4 +32,4 @@ https://www.bezkoder.com/react-typescript-file-upload/
 - add proper loading page
 - error page notfound?
 - revalidate?
-- change the localhost:3000 link
+- change the localhost:3000 link ✅

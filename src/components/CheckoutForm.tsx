@@ -7,7 +7,6 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { NEXT_URL } from "@/utils/url";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -16,6 +15,8 @@ const CheckoutForm = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const apiUrl = process.env.API_URL;
 
   useEffect(() => {
     if (!stripe) {
@@ -63,7 +64,7 @@ const CheckoutForm = () => {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${NEXT_URL}/success`,
+        return_url: `${apiUrl}/success`,
       },
     });
 

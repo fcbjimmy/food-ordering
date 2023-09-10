@@ -1,15 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import FeaturedTextContainer from "./FeaturedTextContainer";
-import { NEXT_URL } from "@/utils/url";
 
 const getFeaturedProducts = async () => {
-  const res = await fetch(`${NEXT_URL}/api/products?featured=yes`, {
+  const apiUrl = process.env.API_URL;
+  const res = await fetch(`${apiUrl}/api/products?featured=yes`, {
     cache: "no-store",
   });
 
   console.log(res);
-  console.log(NEXT_URL);
 
   if (!res.ok) {
     throw new Error("Failed");

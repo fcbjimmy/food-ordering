@@ -1,10 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { NEXT_URL } from "@/utils/url";
 
 const getProducts = async () => {
-  const res = await fetch(`${NEXT_URL}/api/products?featured=no`, {
+  const apiUrl = process.env.API_URL;
+  const res = await fetch(`${apiUrl}/api/products?featured=no`, {
     cache: "no-store",
   });
 

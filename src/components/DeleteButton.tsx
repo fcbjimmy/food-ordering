@@ -3,7 +3,6 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { toast } from "react-toastify";
-import { NEXT_URL } from "@/utils/url";
 
 const DeleteButton = ({ id }: { id: string }) => {
   const { data: session, status } = useSession();
@@ -16,8 +15,11 @@ const DeleteButton = ({ id }: { id: string }) => {
   if (status === "unauthenticated" || !session?.user.isAdmin) {
     router.push("/");
   }
+
+  const apiUrl = process.env.API_URL;
+
   const handleDelete = async (id: string) => {
-    const res = await fetch(`${NEXT_URL}/api/products/${id}`, {
+    const res = await fetch(`${apiUrl}/api/products/${id}`, {
       method: "DELETE",
     });
     const data = await res.json();

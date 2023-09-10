@@ -4,20 +4,19 @@ import { useCartStore } from "@/utils/store";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { toast } from "react-toastify";
-import { NEXT_URL } from "@/utils/url";
 
 const SuccessPage = () => {
   const searchParams = useSearchParams();
   const payment_intent = searchParams.get("payment_intent_client_secret");
   const { clearCart } = useCartStore();
-
+  const apiUrl = process.env.API_URL;
   const router = useRouter();
 
   useEffect(() => {
     let timerId: ReturnType<typeof setTimeout>;
     const confirmPayment = async () => {
       try {
-        const res = await fetch(`${NEXT_URL}/api/confirm/${payment_intent}`, {
+        const res = await fetch(`${apiUrl}/api/confirm/${payment_intent}`, {
           method: "PUT",
         });
         console.log(res);

@@ -2,10 +2,10 @@ import React from "react";
 import Image from "next/image";
 import Price from "@/components/Price";
 import DeleteButton from "@/components/DeleteButton";
-import { NEXT_URL } from "@/utils/url";
 
 const getProduct = async (id: string) => {
-  const res = await fetch(`${NEXT_URL}/api/products/${id}`, {
+  const apiUrl = process.env.API_URL;
+  const res = await fetch(`${apiUrl}/api/products/${id}`, {
     cache: "no-store",
   });
 
