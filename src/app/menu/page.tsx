@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import NotFound from "./not-found";
 
 const getProducts = async () => {
   const apiUrl = process.env.API_URL;
@@ -8,9 +9,8 @@ const getProducts = async () => {
     cache: "no-store",
   });
 
-  if (!res.ok) {
-    throw new Error("Failed");
-  }
+  if (!res.ok) NotFound();
+
   return res.json();
 };
 
