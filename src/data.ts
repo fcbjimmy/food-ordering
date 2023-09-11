@@ -1,4 +1,4 @@
-type Product = {
+export type Product = {
   id: number;
   title: string;
   desc?: string;
@@ -7,7 +7,7 @@ type Product = {
   options?: { title: string; additionalPrice: number }[];
 };
 
-type Products = Product[];
+export type Products = Product[];
 
 export const featuredProducts: Products = [
   {
