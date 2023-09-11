@@ -7,6 +7,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -62,7 +63,7 @@ const CheckoutForm = () => {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `http://localhost:3000/success`,
+        return_url: `${process.env.NEXT_PUBLIC_URL}/success`,
       },
     });
 
@@ -100,7 +101,13 @@ const CheckoutForm = () => {
         className="text-xl text-white border-2 rounded-md bg-green-500 p-2"
       >
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+          {isLoading ? (
+            <div className="spinner" id="spinner">
+              <AiOutlineLoading3Quarters />
+            </div>
+          ) : (
+            "Pay now"
+          )}
         </span>
       </button>
       {/* Show any error or success messages */}

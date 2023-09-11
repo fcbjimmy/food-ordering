@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
+import { toast } from "react-toastify";
 
 type Inputs = { title: string; desc?: string; price: number; catSlug: string };
 
@@ -36,6 +37,7 @@ const AddProduct = () => {
   if (status === "unauthenticated" || !session?.user.isAdmin) {
     router.push("/");
   }
+
   const handleChangeImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     const item = (target.files as FileList)[0];
@@ -89,16 +91,32 @@ const AddProduct = () => {
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
       const imgUrl = await uploadToCloudinary();
-      const res = await fetch("http://localhost:3000/api/products", {
+      console.log("-------------------------------------------------");
+      console.log(process.env.NEXT_PUBLIC_URL);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/products`, {
         method: "POST",
         body: JSON.stringify({ ...inputs, img: imgUrl, options }),
       });
 
       const data = await res.json();
-      console.log(data);
+      setInputs({
+        title: "",
+        desc: "",
+        price: 0,
+        catSlug: "",
+      });
+
+      setOption({
+        title: "",
+        additionalPrice: 0,
+      });
+
+      setOptions([]);
+
+      if (data) toast.success("Successfuly added");
+      router.push("/");
     } catch (error) {
       console.log(error);
     }

@@ -1,4 +1,5 @@
 "use client";
+
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { RiDeleteBin5Fill } from "react-icons/ri";
@@ -17,9 +18,12 @@ const DeleteButton = ({ id }: { id: string }) => {
   }
 
   const handleDelete = async (id: string) => {
-    const res = await fetch(`http://localhost:3000/api/products/${id}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/products/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await res.json();
 
     if (!res.ok) {

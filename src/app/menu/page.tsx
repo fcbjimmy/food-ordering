@@ -4,7 +4,7 @@ import Image from "next/image";
 import NotFound from "./not-found";
 
 const getProducts = async () => {
-  const res = await fetch("http://localhost:3000/api/products?featured=no", {
+  const res = await fetch(`${process.env.BASE_URL}/api/products?featured=no`, {
     cache: "no-store",
   });
 

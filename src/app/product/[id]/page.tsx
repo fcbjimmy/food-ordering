@@ -6,24 +6,13 @@ import NotFound from "./not-found";
 import { getProduct } from "@/lib/getProduct";
 import { getProducts } from "@/lib/getFeaturedProducts";
 
-export async function generateStaticParams() {
-  const products: Product[] = await getProducts();
-  if (!products) return [];
-  console.log("--------------------------------------------------------------");
-  console.log(products);
+//doesnt work during build time
+// export async function generateStaticParams() {
+//   const products: Product[] = await getProducts();
+//   if (!products) return [];
 
-  return products.map((item) => ({ id: item.id }));
-}
-
-// const getProduct = async (id: string) => {
-//   const res = await fetch(`http://localhost:3000/api/products/${id}`, {
-//     cache: "no-store",
-//   });
-
-//   if (!res.ok) return undefined;
-
-//   return res.json();
-// };
+//   return products.map((item) => ({ id: item.id }));
+// }
 
 const SingleProductPage = async ({ params }: { params: { id: string } }) => {
   // const params = useParams();

@@ -23,6 +23,13 @@ https://www.bezkoder.com/react-typescript-file-upload/
 
 https://stackoverflow.com/questions/76624252/typeerror-fetch-failed-when-deploying-to-vercel-next-js
 
+Next.js api routes are not accessible during build, hence error while deploying on vercel
+https://stackoverflow.com/questions/76756417/nextjs-13-app-router-error-occurred-prerendering-page-typeerror-fetch-failed
+
+NEXT*PUBLIC*
+TO BE USED TO ACCESS ENV VARIABLES IN CLIENT SIDE
+https://stackoverflow.com/questions/76847389/using-env-variables-in-a-use-client-component-in-next-js
+
 // todo
 
 - client secret(intentid) doesnt match with db ✅
