@@ -16,6 +16,9 @@ const getProducts = async () => {
 
 const Menu = async () => {
   const products: Product[] = await getProducts();
+
+  if (!products) return <div>Sorry, no items are available!</div>;
+
   return (
     <div className="flex flex-wrap text-pink-600">
       {products.map((item) => {
