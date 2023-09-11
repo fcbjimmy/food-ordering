@@ -1,20 +1,20 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import NotFound from "./not-found";
+import { getNonFeaturedProducts } from "@/lib/getFeaturedProducts";
 
-const getProducts = async () => {
-  const res = await fetch(`${process.env.BASE_URL}/api/products?featured=no`, {
-    cache: "no-store",
-  });
+// const getProducts = async () => {
+//   const res = await fetch(`${process.env.BASE_URL}/api/products?featured=no`, {
+//     cache: "no-store",
+//   });
 
-  if (!res.ok) undefined;
+//   if (!res.ok) undefined;
 
-  return res.json();
-};
+//   return res.json();
+// };
 
 const Menu = async () => {
-  const products: Product[] | null = await getProducts();
+  const products: Product[] = await getNonFeaturedProducts();
 
   if (!products) return <div>Sorry, no items are available!</div>;
 
@@ -36,7 +36,9 @@ const Menu = async () => {
             {/* Text */}
             <div className="flex items-center justify-between font-bold uppercase">
               <h1 className="text-xl p-2">{item.title}</h1>
-              <h2 className="group-hover:hidden text-xl">{item.price}</h2>
+              <h2 className="group-hover:hidden text-xl">
+                {Number(item.price)}
+              </h2>
               <button className="hidden group-hover:block bg-pink-600 text-white p-2 rounded-md">
                 Add to cart
               </button>

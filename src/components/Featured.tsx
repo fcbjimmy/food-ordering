@@ -6,6 +6,14 @@ import { getFeaturedProducts } from "@/lib/getFeaturedProducts";
 export const Featured = async () => {
   const featuredProducts: Product[] = await getFeaturedProducts();
 
+  if (!featuredProducts) {
+    return (
+      <div className="w-screen overflow-x-scroll text-pink-600">
+        <div className="w-max flex">No Products available</div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-screen overflow-x-scroll text-pink-600">
       {/* WRAPPER */}

@@ -1,6 +1,8 @@
 "use client";
 
+import { Prisma } from "@prisma/client";
 import { useRouter } from "next/navigation";
+
 type Props = {
   title: string;
   desc?: string;

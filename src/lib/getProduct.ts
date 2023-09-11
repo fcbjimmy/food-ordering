@@ -1,14 +1,13 @@
-import { featuredProducts } from "@/data";
+import prisma from "@/utils/connect";
 
-export const getProduct = async (id: string) => {
-  // const res = await fetch(`${process.env.BASE_URL}/api/products/${id}`, {
-  //   cache: "no-store",
-  // });
+export const getProduct = async (id: string): Promise<Product | undefined> => {
+  const res = await fetch(`${process.env.BASE_URL}/api/products/${id}`, {
+    cache: "no-store",
+  });
 
-  // if (!res.ok) return undefined;
+  if (!res.ok) return undefined;
 
-  // return res.json();
+  return res.json();
 
-  //TEST
-  return featuredProducts.filter((item) => item.id === Number(id));
+  //test
 };
