@@ -89,10 +89,10 @@ const AddProduct = () => {
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const apiUrl = process.env.API_URL;
+
     try {
       const imgUrl = await uploadToCloudinary();
-      const res = await fetch(`${apiUrl}/api/products`, {
+      const res = await fetch("http://localhost:3000/api/products", {
         method: "POST",
         body: JSON.stringify({ ...inputs, img: imgUrl, options }),
       });

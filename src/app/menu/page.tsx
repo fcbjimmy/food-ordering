@@ -4,12 +4,11 @@ import Image from "next/image";
 import NotFound from "./not-found";
 
 const getProducts = async () => {
-  const apiUrl = process.env.API_URL;
-  const res = await fetch(`${apiUrl}/api/products?featured=no`, {
+  const res = await fetch("http://localhost:3000/api/products?featured=no", {
     cache: "no-store",
   });
 
-  if (!res.ok) NotFound();
+  if (!res.ok) undefined;
 
   return res.json();
 };

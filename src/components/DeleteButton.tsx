@@ -16,10 +16,8 @@ const DeleteButton = ({ id }: { id: string }) => {
     router.push("/");
   }
 
-  const apiUrl = process.env.API_URL;
-
   const handleDelete = async (id: string) => {
-    const res = await fetch(`${apiUrl}/api/products/${id}`, {
+    const res = await fetch(`http://localhost:3000/api/products/${id}`, {
       method: "DELETE",
     });
     const data = await res.json();

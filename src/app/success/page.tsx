@@ -9,16 +9,18 @@ const SuccessPage = () => {
   const searchParams = useSearchParams();
   const payment_intent = searchParams.get("payment_intent_client_secret");
   const { clearCart } = useCartStore();
-  const apiUrl = process.env.API_URL;
   const router = useRouter();
 
   useEffect(() => {
     let timerId: ReturnType<typeof setTimeout>;
     const confirmPayment = async () => {
       try {
-        const res = await fetch(`${apiUrl}/api/confirm/${payment_intent}`, {
-          method: "PUT",
-        });
+        const res = await fetch(
+          `http://localhost:3000/api/confirm/${payment_intent}`,
+          {
+            method: "PUT",
+          }
+        );
         console.log(res);
         const data = await res.json();
         if (res.ok) {

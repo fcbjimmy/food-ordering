@@ -16,8 +16,6 @@ const CheckoutForm = () => {
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const apiUrl = process.env.API_URL;
-
   useEffect(() => {
     if (!stripe) {
       return;
@@ -64,7 +62,7 @@ const CheckoutForm = () => {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${apiUrl}/success`,
+        return_url: `http://localhost:3000/success`,
       },
     });
 

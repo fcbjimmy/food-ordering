@@ -23,8 +23,7 @@ const Cart = () => {
       router.push("/");
     } else {
       try {
-        const apiUrl = process.env.API_URL;
-        const res = await fetch(`${apiUrl}/api/orders`, {
+        const res = await fetch("http://localhost:3000/api/orders", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const Orders = () => {
   const { data: session, status } = useSession();
-  const apiUrl = process.env.API_URL;
+
   const router = useRouter();
 
   if (status === "unauthenticated" || !session) {
@@ -18,14 +18,15 @@ const Orders = () => {
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["orders"],
-    queryFn: () => fetch(`${apiUrl}/api/orders`).then((res) => res.json()),
+    queryFn: () =>
+      fetch("http://localhost:3000/api/orders").then((res) => res.json()),
   });
 
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: ({ id, status }: { id: string; status: string }) => {
-      return fetch(`${apiUrl}/api/orders/${id}`, {
+      return fetch(`http://localhost:3000/api/orders/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

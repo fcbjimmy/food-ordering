@@ -11,16 +11,19 @@ const stripePromise = loadStripe(
 //create intent
 const PaymentPage = ({ params }: { params: { id: string } }) => {
   const [clientSecret, setClientSecret] = useState("");
-  const apiUrl = process.env.API_URL;
+
   const { id } = params;
 
   useEffect(() => {
     //api call to create the intent
     const makePayment = async () => {
       try {
-        const res = await fetch(`${apiUrl}/api/create-intent/${id}`, {
-          method: "POST",
-        });
+        const res = await fetch(
+          "http://localhost:3000/api/create-intent/${id}",
+          {
+            method: "POST",
+          }
+        );
         const data = await res.json();
         console.log(
           "--------------------------clientSecret (intentId)--------------------------"

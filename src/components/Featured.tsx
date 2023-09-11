@@ -1,21 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import FeaturedTextContainer from "./FeaturedTextContainer";
-
-const getFeaturedProducts = async () => {
-  const apiUrl = process.env.API_URL;
-  const res = await fetch(`${apiUrl}/api/products?featured=yes`, {
-    cache: "no-store",
-  });
-
-  console.log(res);
-
-  if (!res.ok) {
-    throw new Error("Failed");
-  }
-
-  return res.json();
-};
+import { getFeaturedProducts } from "@/lib/getFeaturedProducts";
 
 export const Featured = async () => {
   const featuredProducts: Product[] = await getFeaturedProducts();
