@@ -1,25 +1,32 @@
-// export const getFeaturedProducts = async () => {
-//   const res = await fetch(`${process.env.BASE_URL}/api/products?featured=yes`, {
-//     cache: "no-store",
-//   });
+import { featuredProducts } from "@/data";
 
-//   console.log(
-//     "----------------------------------CONSOLE----------------------------------"
-//   );
-//   console.log(process.env.BASE_URL);
-//   console.log(res);
+export const getFeaturedProducts = async () => {
+  // const res = await fetch(`${process.env.BASE_URL}/api/products?featured=yes`, {
+  //   cache: "no-store",
+  // });
 
-//   if (!res.ok) return undefined;
+  // console.log(
+  //   "----------------------------------CONSOLE----------------------------------"
+  // );
+  // console.log(process.env.BASE_URL);
+  // console.log(res);
 
-//   return res.json();
-// };
+  // if (!res.ok) return undefined;
 
-// export const getProducts = async () => {
-//   const res = await fetch(`${process.env.BASE_URL}/api/products?featured=no`, {
-//     cache: "no-store",
-//   });
+  // return res.json();
 
-//   if (!res.ok) undefined;
+  //TEST
+  return featuredProducts;
+};
 
-//   return res.json();
-// };
+export const getProducts = async () => {
+  // const res = await fetch(`${process.env.BASE_URL}/api/products?featured=no`, {
+  //   cache: "no-store",
+  // });
+
+  // if (!res.ok) undefined;
+
+  // return res.json();
+  //TEST
+  return featuredProducts;
+};

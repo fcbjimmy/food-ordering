@@ -1,9 +1,14 @@
-// export const getProduct = async (id: string) => {
-//   const res = await fetch(`${process.env.BASE_URL}/api/products/${id}`, {
-//     cache: "no-store",
-//   });
+import { featuredProducts } from "@/data";
 
-//   if (!res.ok) return undefined;
+export const getProduct = async (id: string) => {
+  // const res = await fetch(`${process.env.BASE_URL}/api/products/${id}`, {
+  //   cache: "no-store",
+  // });
 
-//   return res.json();
-// };
+  // if (!res.ok) return undefined;
+
+  // return res.json();
+
+  //TEST
+  return featuredProducts.filter((item) => item.id === Number(id));
+};
