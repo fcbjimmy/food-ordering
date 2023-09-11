@@ -15,7 +15,7 @@ const getProducts = async () => {
 };
 
 const Menu = async () => {
-  const products: Product[] = await getProducts();
+  const products: Product[] | null = await getProducts();
 
   if (!products) return <div>Sorry, no items are available!</div>;
 
