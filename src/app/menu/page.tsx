@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getNonFeaturedProducts } from "@/lib/getFeaturedProducts";
+import { getAuthSession } from "@/utils/auth";
 
 // const getProducts = async () => {
 //   const res = await fetch(`${process.env.BASE_URL}/api/products?featured=no`, {
@@ -17,6 +18,8 @@ const Menu = async () => {
   const products: Product[] = await getNonFeaturedProducts();
 
   if (!products) return <div>Sorry, no items are available!</div>;
+
+  console.log(products);
 
   return (
     <div className="flex flex-wrap text-pink-600">

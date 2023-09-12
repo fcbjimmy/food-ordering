@@ -12,7 +12,7 @@ const Orders = () => {
 
   const router = useRouter();
 
-  if (status === "unauthenticated" || !session) {
+  if (status === "unauthenticated") {
     router.push("/");
   }
 

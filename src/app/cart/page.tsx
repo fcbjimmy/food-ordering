@@ -81,7 +81,7 @@ const Cart = () => {
                   </div>
                   <h2 className="font-bold">${product.price}</h2>
                   <span
-                    className="cursor-pointer"
+                    className="cursor-pointer text-red-500 font-bold"
                     onClick={() => removeFromCart(product)}
                   >
                     X

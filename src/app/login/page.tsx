@@ -4,10 +4,14 @@ import Link from "next/link";
 import { AiFillGoogleSquare, AiFillFacebook } from "react-icons/ai";
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { stat } from "fs";
 
 const Login = () => {
   const { data, status } = useSession();
   const router = useRouter();
+
+  useEffect(() => {}, [router, data, status]);
 
   if (status === "loading") {
     return <p>Loading...</p>;

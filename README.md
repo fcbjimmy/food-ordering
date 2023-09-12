@@ -2,9 +2,9 @@
 
 Next.js Food ordering
 
-## Link
+## Demo Video
 
-https://next-personal-fcbjimmy.vercel.app/
+https://www.youtube.com/watch?v=2yMciiwqYy0
 
 ## Tech Stack
 

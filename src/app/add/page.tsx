@@ -1,12 +1,13 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
 
-type Inputs = { title: string; desc?: string; price: number; catSlug: string };
+type Inputs = { title: string; desc?: string; price: string; catSlug: string };
 
 type Option = { title: string; additionalPrice: number };
 
@@ -17,8 +18,8 @@ const AddProduct = () => {
   const [inputs, setInputs] = useState<Inputs>({
     title: "",
     desc: "",
-    price: 0,
-    catSlug: "",
+    price: "0",
+    catSlug: "pizzas",
   });
 
   const [option, setOption] = useState<Option>({
@@ -97,14 +98,20 @@ const AddProduct = () => {
       console.log(process.env.NEXT_PUBLIC_URL);
       const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/products`, {
         method: "POST",
-        body: JSON.stringify({ ...inputs, img: imgUrl, options }),
+        body: JSON.stringify({
+          ...inputs,
+          price: Number(inputs.price),
+          img: imgUrl,
+          options,
+        }),
       });
 
       const data = await res.json();
+
       setInputs({
         title: "",
         desc: "",
-        price: 0,
+        price: "0",
         catSlug: "",
       });
 
@@ -161,11 +168,11 @@ const AddProduct = () => {
           <input
             className="ring-1 ring-pink-500 p-2 rounded-sm"
             name="price"
-            type="number"
+            type="text"
             onChange={handleChange}
           />
         </div>
-        <div className="w-full flex flex-col gap-2 ">
+        {/* <div className="w-full flex flex-col gap-2 ">
           <label htmlFor="catSlug">Category</label>
           <input
             className="ring-1 ring-pink-500 p-2 rounded-sm"
@@ -174,7 +181,7 @@ const AddProduct = () => {
             onChange={handleChange}
             placeholder="Can only use 'pizzas'"
           />
-        </div>
+        </div> */}
         <div className="w-full flex flex-col gap-2 ">
           <label>Options (e.g. small, medium)</label>
           <div className="flex flex-col gap-2">

@@ -4,6 +4,8 @@ import Price from "@/components/Price";
 import DeleteButton from "@/components/DeleteButton";
 import NotFound from "./not-found";
 import { getProduct } from "@/lib/getProduct";
+import { notFound } from "next/navigation";
+import { getAuthSession } from "@/utils/auth";
 
 //doesnt work during build time
 // export async function generateStaticParams() {
@@ -18,11 +20,12 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
   // const params = useParams();
   // const id = params.id;
   const { id } = params;
+  const session = await getAuthSession();
 
   // const product: Product = await getProduct(id);
   const product: Product | undefined = await getProduct(id);
-
-  if (!product) return NotFound();
+  console.log(product);
+  if (!product) return notFound();
 
   return (
     <div className="p-4 lg:px-20 xl:px-40 h-screen flex flex-col justify-around text-pink-600 md:flex-row md:gap-8 md:items-center md:h-[75vh] relative">
@@ -38,7 +41,7 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
         <p className="">{product.desc}</p>
         <Price product={product} />
       </div>
-      <DeleteButton id={product.id} />
+      {session?.user.isAdmin && <DeleteButton id={product.id} />}
     </div>
   );
 };

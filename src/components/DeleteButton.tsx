@@ -2,12 +2,15 @@
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { toast } from "react-toastify";
 
 const DeleteButton = ({ id }: { id: string }) => {
   const { data: session, status } = useSession();
   const router = useRouter();
+
+  useEffect(() => {}, [router]);
 
   if (status === "loading") {
     return <p>Loading...</p>;
@@ -31,6 +34,7 @@ const DeleteButton = ({ id }: { id: string }) => {
     }
 
     if (res.status === 200) {
+      router.refresh();
       router.push("/menu");
       toast(data.message);
     }
