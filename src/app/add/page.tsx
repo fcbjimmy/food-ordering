@@ -94,12 +94,16 @@ const AddProduct = () => {
     e.preventDefault();
     try {
       const imgUrl = await uploadToCloudinary();
-      console.log("-------------------------------------------------");
-      console.log(process.env.NEXT_PUBLIC_URL);
+      console.log(
+        "--------------------------what is going on-----------------------"
+      );
+      console.log(inputs);
       const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/products`, {
         method: "POST",
         body: JSON.stringify({
-          ...inputs,
+          title: inputs.title,
+          desc: inputs.desc,
+          catSlug: inputs.catSlug,
           price: Number(inputs.price),
           img: imgUrl,
           options,

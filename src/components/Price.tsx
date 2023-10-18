@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Price = ({ product }: { product: Product }) => {
-  const [total, setTotal] = useState<number>(product.price);
+  const [total, setTotal] = useState<number>(Number(product.price)); //Number(product.price)
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState(0);
 
@@ -17,9 +17,12 @@ const Price = ({ product }: { product: Product }) => {
 
   useEffect(() => {
     if (product.options.length) {
+      console.log("inside the price");
+      console.log(product);
+      console.log("type of total", typeof total);
       setTotal(
         quantity * Number(product.price) +
-          product.options[selected].additionalPrice
+          Number(product.options[selected].additionalPrice)
       );
     }
   }, [quantity, selected, product]);
@@ -40,7 +43,7 @@ const Price = ({ product }: { product: Product }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-2xl">${Number(total).toFixed(1)}</h2>
+      <h2 className="text-2xl">${total}</h2>
       {/* Options container */}
       <div className="flex gap-4">
         {product.options?.map((option, id) => (

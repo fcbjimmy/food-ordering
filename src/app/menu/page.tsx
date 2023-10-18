@@ -18,8 +18,9 @@ const Menu = async () => {
   const products: Product[] = await getNonFeaturedProducts();
 
   if (!products) return <div>Sorry, no items are available!</div>;
-
+  console.log("------------------------Products------------------------");
   console.log(products);
+  console.log(typeof products[0].options);
 
   return (
     <div className="flex flex-wrap text-pink-600">

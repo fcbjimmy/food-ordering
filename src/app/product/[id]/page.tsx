@@ -24,7 +24,12 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
 
   // const product: Product = await getProduct(id);
   const product: Product | undefined = await getProduct(id);
+  console.log(
+    "------------------------Individual Product------------------------"
+  );
   console.log(product);
+  console.log(typeof product?.options[0].additionalPrice);
+  console.log("Price", typeof product?.price);
   if (!product) return notFound();
 
   return (

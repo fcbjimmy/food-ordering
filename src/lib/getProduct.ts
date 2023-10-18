@@ -6,7 +6,6 @@ export const getProduct = async (id: string): Promise<Product | undefined> => {
   });
 
   if (!res.ok) return undefined;
-
   return res.json();
 
   //test
